@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.Button;
 public class FirstFragment extends Fragment {
 
     Button btn_second;
+    public NavController navController;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -42,9 +44,16 @@ public class FirstFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         btn_second = view.findViewById(R.id.btn_firstFrag);
+        navController = Navigation.findNavController(getActivity(), R.id.host_fragment);
 
         View.OnClickListener navigate = Navigation.createNavigateOnClickListener(R.id.action_firstFragment_to_secondFragment);
-
         btn_second.setOnClickListener(navigate);
+
+       /* btn_second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.secondFragment);
+            }
+        });*/
     }
 }
